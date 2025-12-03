@@ -67,32 +67,24 @@ def get_local_image_base64(path):
     return None
 
 def calculate_streaks(weeks):
-    # Flatten the weeks into a single list of days
     days = []
     for week in weeks:
         days.extend(week['contributionDays'])
-    
-    # Sort by date just in case
     days.sort(key=lambda x: x['date'])
     
     current_streak = 0
     longest_streak = 0
     temp_streak = 0
-    
-    # Check if today has contributions to start the current streak count correctly
     today_str = datetime.datetime.now().strftime("%Y-%m-%d")
     
-    # Iterate backwards for current streak
     for day in reversed(days):
         if day['contributionCount'] > 0:
             current_streak += 1
         else:
-            # If it's today and 0, we don't break yet (streak might be from yesterday)
             if day['date'] == today_str:
                 continue
             break
             
-    # Iterate forward for longest streak
     for day in days:
         if day['contributionCount'] > 0:
             temp_streak += 1
@@ -100,14 +92,21 @@ def calculate_streaks(weeks):
             if temp_streak > longest_streak:
                 longest_streak = temp_streak
             temp_streak = 0
-    # Final check
     if temp_streak > longest_streak:
         longest_streak = temp_streak
         
     return current_streak, longest_streak
 
+def calculate_grade(total_contributions):
+    if total_contributions >= 2000: return "S+"
+    if total_contributions >= 1000: return "A+"
+    if total_contributions >= 500:  return "A"
+    if total_contributions >= 200:  return "B+"
+    if total_contributions >= 100:  return "B"
+    if total_contributions >= 50:   return "C+"
+    return "C"
+
 def get_real_stats(username):
-    # 1. REST API for basic stats
     user_url = f"https://api.github.com/users/{username}"
     repos_url = f"https://api.github.com/users/{username}/repos?per_page=100&type=owner"
     
@@ -123,7 +122,6 @@ def get_real_stats(username):
     total_stars = sum(repo['stargazers_count'] for repo in repos_data)
     total_forks = sum(repo['forks_count'] for repo in repos_data)
     
-    # 2. GraphQL API for Real Contributions & Streaks
     query = """
     query($userName:String!) {
       user(login: $userName) {
@@ -147,7 +145,6 @@ def get_real_stats(username):
     
     gql_data = fetch_graphql(query, {"userName": username})
     
-    # Default values if GraphQL fails
     total_contributions = 0
     current_streak = 0
     longest_streak = 0
@@ -166,10 +163,9 @@ def get_real_stats(username):
         
         current_streak, longest_streak = calculate_streaks(calendar['weeks'])
     
-    # Fetch Local Image
+    grade = calculate_grade(total_contributions)
     avatar_b64 = get_local_image_base64("assets/image.png")
     
-    # Get ALL languages
     langs = []
     for repo in repos_data:
         if repo['language']:
@@ -213,7 +209,8 @@ def get_real_stats(username):
             "longest_streak": longest_streak,
             "total_commits": total_commits,
             "total_prs": total_prs,
-            "total_issues": total_issues
+            "total_issues": total_issues,
+            "grade": grade
         },
         "languages": top_languages
     }
@@ -318,7 +315,7 @@ def create_svg(data):
     </g>
     '''
 
-    # 3. STATS 2 (Contributions - Renamed from Forks)
+    # 3. STATS 2 (Contributions)
     current_year = datetime.datetime.now().year
     svg += f'''
     <g transform="translate(510, 0)">
@@ -409,56 +406,48 @@ def create_svg(data):
 
     # --- NEW SECTION: STATS & STREAK (Bottom) ---
     
-    # Left Box: GitHub Stats (REAL DATA NOW)
+    # Left Box: GitHub Stats
     svg += f'''
     <g transform="translate(0, 620)">
         <rect width="490" height="200" class="card" rx="24"/>
         <text x="30" y="40" font-size="16" font-weight="bold" fill="{THEME['text_main']}">GitHub Stats</text>
         
         <g transform="translate(30, 70)">
-            <!-- Item 1 -->
             <text x="0" y="0" class="label">Total Stars Earned:</text>
             <text x="200" y="0" class="text" font-weight="bold">{stats['total_stars']}</text>
             
-            <!-- Item 2 -->
             <text x="0" y="30" class="label">Total Commits ({current_year}):</text>
             <text x="200" y="30" class="text" font-weight="bold">{stats['total_commits']}</text>
             
-            <!-- Item 3 -->
             <text x="0" y="60" class="label">Total PRs:</text>
             <text x="200" y="60" class="text" font-weight="bold">{stats['total_prs']}</text>
             
-            <!-- Item 4 -->
             <text x="0" y="90" class="label">Total Issues:</text>
             <text x="200" y="90" class="text" font-weight="bold">{stats['total_issues']}</text>
         </g>
         
-        <!-- Decorative Circle Chart on Right -->
+        <!-- Dynamic Grade Circle -->
         <g transform="translate(380, 100)">
             <circle r="40" fill="none" stroke="{THEME['border']}" stroke-width="8"/>
             <circle r="40" fill="none" stroke="{THEME['text_main']}" stroke-width="8" stroke-dasharray="200" stroke-dashoffset="150" transform="rotate(-90)"/>
-            <text x="0" y="5" text-anchor="middle" font-weight="bold" font-size="24" fill="{THEME['text_main']}">A+</text>
+            <text x="0" y="5" text-anchor="middle" font-weight="bold" font-size="24" fill="{THEME['text_main']}">{stats['grade']}</text>
         </g>
     </g>
     '''
     
-    # Right Box: Streak Stats (REAL DATA NOW)
+    # Right Box: Streak Stats
     svg += f'''
     <g transform="translate(510, 620)">
         <rect width="490" height="200" class="card" rx="24"/>
         
-        <!-- 3 Columns -->
-        <!-- Col 1: Total Contribs -->
         <g transform="translate(80, 80)">
             <text x="0" y="0" text-anchor="middle" font-size="32" font-weight="bold" fill="{THEME['text_main']}">{stats['total_contributions']}</text>
             <text x="0" y="30" text-anchor="middle" class="label">Total</text>
             <text x="0" y="45" text-anchor="middle" class="label">Contributions</text>
         </g>
         
-        <!-- Divider -->
         <line x1="160" y1="40" x2="160" y2="160" stroke="{THEME['border']}" stroke-width="2"/>
         
-        <!-- Col 2: Current Streak (Circle) -->
         <g transform="translate(245, 100)">
             <circle r="50" fill="none" stroke="{THEME['border']}" stroke-width="4"/>
             <circle r="50" fill="none" stroke="{THEME['text_main']}" stroke-width="4" stroke-dasharray="314" stroke-dashoffset="100" transform="rotate(-90)"/>
@@ -467,10 +456,8 @@ def create_svg(data):
             <text x="0" y="70" text-anchor="middle" class="label">Current Streak</text>
         </g>
         
-        <!-- Divider -->
         <line x1="330" y1="40" x2="330" y2="160" stroke="{THEME['border']}" stroke-width="2"/>
         
-        <!-- Col 3: Longest Streak -->
         <g transform="translate(410, 80)">
             <text x="0" y="0" text-anchor="middle" font-size="32" font-weight="bold" fill="{THEME['text_main']}">{stats['longest_streak']}</text>
             <text x="0" y="30" text-anchor="middle" class="label">Longest</text>
