@@ -38,13 +38,35 @@ export default async function handler(request: Request) {
         },
       ],
       headers: {
-        "Cache-Control": "public, max-age=7200, s-maxage=7200", // Cache 2 jam di CDN Vercel
+        "Cache-Control": "public, max-age=7200, s-maxage=7200",
       },
     });
   } catch (e: any) {
     console.log(`${e.message}`);
-    return new Response(`Failed to generate the image`, {
-      status: 500,
-    });
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            height: "100%",
+            backgroundColor: "#050505",
+            color: "#ff4444",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            fontFamily: "sans-serif",
+            fontSize: "24px",
+            fontWeight: "bold",
+          }}
+        >
+          <span>⚠️ Failed to generate image</span>
+          <span style={{ fontSize: "16px", marginTop: "10px", color: "#888" }}>
+            {e.message}
+          </span>
+        </div>
+      ),
+      { width: 1000, height: 850 }
+    );
   }
 }

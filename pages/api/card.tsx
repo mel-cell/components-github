@@ -108,6 +108,30 @@ export default async function handler(request: Request) {
     );
   } catch (e: any) {
     console.log(`${e.message}`);
-    return new Response(`Failed to generate image`, { status: 500 });
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            height: "100%",
+            backgroundColor: "#050505",
+            color: "#ff4444",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            fontFamily: "sans-serif",
+            fontSize: "24px",
+            fontWeight: "bold",
+          }}
+        >
+          <span>⚠️ Failed to generate image</span>
+          <span style={{ fontSize: "16px", marginTop: "10px", color: "#888" }}>
+            {e.message}
+          </span>
+        </div>
+      ),
+      { width: 500, height: 300 }
+    );
   }
 }
