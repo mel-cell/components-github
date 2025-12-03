@@ -1,6 +1,6 @@
 import { ImageResponse } from "@vercel/og";
-import { getGithubData, calculateStats } from "../src/lib/github";
-import { BentoGrid } from "../src/components/BentoGrid";
+import { getGithubData, calculateStats } from "../../src/lib/github";
+import { BentoGrid } from "../../src/components/BentoGrid";
 
 export const config = {
   runtime: "edge",

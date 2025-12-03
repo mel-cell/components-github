@@ -1,10 +1,10 @@
 import { ImageResponse } from "@vercel/og";
-import { getGithubData, calculateStats } from "../src/lib/github";
-import { StreakCard } from "../src/components/StreakCard";
-import { LanguageCard } from "../src/components/LanguageCard";
-import { ActivityCard } from "../src/components/ActivityCard";
-import { GitHubStatsCard } from "../src/components/GitHubStatsCard";
-import { ProfileCard } from "../src/components/ProfileCard";
+import { getGithubData, calculateStats } from "../../src/lib/github";
+import { StreakCard } from "../../src/components/StreakCard";
+import { LanguageCard } from "../../src/components/LanguageCard";
+import { ActivityCard } from "../../src/components/ActivityCard";
+import { GitHubStatsCard } from "../../src/components/GitHubStatsCard";
+import { ProfileCard } from "../../src/components/ProfileCard";
 
 export const config = {
   runtime: "edge",
