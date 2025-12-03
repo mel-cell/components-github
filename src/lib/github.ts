@@ -12,8 +12,12 @@ export interface GithubData {
     repositories: {
       totalCount: number;
       nodes: {
+        stargazers: { totalCount: number };
         languages: {
-          edges: { size: number; node: { name: string; color: string } }[];
+          edges: {
+            size: number;
+            node: { name: string; color: string };
+          }[];
         };
       }[];
     };
@@ -61,6 +65,9 @@ export async function getGithubData(username: string): Promise<GithubData> {
         ) {
           totalCount
           nodes {
+            stargazers {
+              totalCount
+            }
             languages(first: 5) {
               edges {
                 size
@@ -69,9 +76,6 @@ export async function getGithubData(username: string): Promise<GithubData> {
                   color
                 }
               }
-            }
-            stargazers {
-              totalCount
             }
           }
         }
@@ -99,18 +103,11 @@ export async function getGithubData(username: string): Promise<GithubData> {
 export function calculateStats(data: GithubData) {
   const user = data.user;
 
-  // Calculate Total Stars
-  // Note: In a real robust app we might need to paginate repos, but for now top 100 is usually enough
-  // The query above doesn't explicitly sum stars, let's do a rough sum from nodes or fetch separately if needed.
-  // Actually, let's just assume we iterate the nodes.
-  // Wait, the query above missed stargazers count in nodes properly. Let me fix the query in my head or just use what I wrote.
-  // I added stargazers { totalCount } in the query logic but let's make sure it's accessible.
-  // For simplicity in this "Satori" version, let's iterate the repos we got.
-
   let totalStars = 0;
-  // @ts-ignore
   user.repositories.nodes.forEach((repo) => {
-    if (repo.stargazers) totalStars += repo.stargazers.totalCount;
+    if (repo.stargazers) {
+      totalStars += repo.stargazers.totalCount;
+    }
   });
 
   // Calculate Languages
