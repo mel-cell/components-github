@@ -23,7 +23,7 @@ export default async function handler(request: Request) {
         {
           name: "Inter",
           data: await fetch(
-            "https://github.com/rsms/inter/raw/master/docs/font-files/Inter-Regular.woff"
+            "https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.15/files/inter-latin-400-normal.woff"
           ).then((res) => res.arrayBuffer()),
           weight: 400,
           style: "normal",
@@ -31,7 +31,7 @@ export default async function handler(request: Request) {
         {
           name: "Inter",
           data: await fetch(
-            "https://github.com/rsms/inter/raw/master/docs/font-files/Inter-Bold.woff"
+            "https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.15/files/inter-latin-700-normal.woff"
           ).then((res) => res.arrayBuffer()),
           weight: 700,
           style: "normal",
