@@ -2,7 +2,9 @@
 
 <div align="center">
   <!-- START_GRID -->
-  <img src="assets/grid.svg" alt="Profile Grid" width="900" />
+  <a href="https://github.com/mel-cell">
+    <img src="https://mel-cell-profile.vercel.app/api?username=mel-cell" alt="Mel-Cell Profile Grid" width="900" />
+  </a>
   <!-- END_GRID -->
 </div>
 
@@ -24,4 +26,20 @@
     <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
   </a>
   <!-- Add more socials here if needed -->
+</div>
+
+<div align="center">
+  <h3>My Stats</h3>
+  <table>
+    <tr>
+      <td valign="top" width="50%">
+        <img src="https://mel-cell-profile.vercel.app/api/card?type=streak&username=mel-cell" alt="GitHub Streak" width="100%" />
+        <br/><br/>
+        <img src="https://mel-cell-profile.vercel.app/api/card?type=stats&username=mel-cell" alt="GitHub Stats" width="100%" />
+      </td>
+      <td valign="top" width="50%">
+        <img src="https://mel-cell-profile.vercel.app/api/card?type=languages&username=mel-cell" alt="Top Languages" width="100%" />
+      </td>
+    </tr>
+  </table>
 </div>
