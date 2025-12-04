@@ -38,7 +38,9 @@ export default async function handler(request: Request) {
         },
       ],
       headers: {
-        "Cache-Control": "public, max-age=7200, s-maxage=7200",
+        "Cache-Control": "no-store, max-age=0",
+        "Content-Security-Policy":
+          "default-src 'none'; img-src * data: https:; style-src 'unsafe-inline'; font-src * data: https:;",
       },
     });
   } catch (e: any) {
