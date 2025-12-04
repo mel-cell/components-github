@@ -46,18 +46,64 @@ A sleek, full-width card that combines your **Contribution Streak**, **GitHub St
 
 Prefer a custom layout? Use these individual cards to build your own design.
 
-| Component     | Preview (Click to View)                                                                | Usage URL                                         |
-| ------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------- |
-| **Streak**    | [View](https://components-github.vercel.app/api/card?type=streak&username=mel-cell)    | `/api/card?type=streak&username=your-username`    |
-| **Stats**     | [View](https://components-github.vercel.app/api/card?type=stats&username=mel-cell)     | `/api/card?type=stats&username=your-username`     |
-| **Languages** | [View](https://components-github.vercel.app/api/card?type=languages&username=mel-cell) | `/api/card?type=languages&username=your-username` |
-| **Activity**  | [View](https://components-github.vercel.app/api/card?type=activity&username=mel-cell)  | `/api/card?type=activity&username=your-username`  |
-| **Profile**   | [View](https://components-github.vercel.app/api/card?type=profile&username=mel-cell)   | `/api/card?type=profile&username=your-username`   |
+### 🔥 Streak Card
 
-### 👨‍💻 Example Usage
+Displays your current and longest contribution streaks.
+
+<div align="center">
+  <img src="https://components-github.vercel.app/api/card?type=streak&username=mel-cell&v=1" alt="Streak Card" height="200" />
+</div>
 
 ```markdown
-<img src="https://components-github.vercel.app/api/card?type=streak&username=your-username" alt="Streak" />
+<img src="https://components-github.vercel.app/api/card?type=streak&username=your-username" alt="Streak Card" />
+```
+
+### 📈 GitHub Stats
+
+Shows your total stars, commits, PRs, issues, and a calculated grade.
+
+<div align="center">
+  <img src="https://components-github.vercel.app/api/card?type=stats&username=mel-cell&v=1" alt="Stats Card" height="200" />
+</div>
+
+```markdown
+<img src="https://components-github.vercel.app/api/card?type=stats&username=your-username" alt="Stats Card" />
+```
+
+### 💻 Top Languages
+
+Displays your most used languages in a donut chart.
+
+<div align="center">
+  <img src="https://components-github.vercel.app/api/card?type=languages&username=mel-cell&v=1" alt="Languages Card" height="480" />
+</div>
+
+```markdown
+<img src="https://components-github.vercel.app/api/card?type=languages&username=your-username" alt="Languages Card" />
+```
+
+### 💓 Activity Graph
+
+A sparkline graph showing your contribution activity over the last 50 days.
+
+<div align="center">
+  <img src="https://components-github.vercel.app/api/card?type=activity&username=mel-cell&v=1" alt="Activity Card" height="150" />
+</div>
+
+```markdown
+<img src="https://components-github.vercel.app/api/card?type=activity&username=your-username" alt="Activity Card" />
+```
+
+### 👤 Profile Card
+
+A simple card displaying your avatar, name, and bio.
+
+<div align="center">
+  <img src="https://components-github.vercel.app/api/card?type=profile&username=mel-cell&v=1" alt="Profile Card" height="260" />
+</div>
+
+```markdown
+<img src="https://components-github.vercel.app/api/card?type=profile&username=your-username" alt="Profile Card" />
 ```
 
 ---
