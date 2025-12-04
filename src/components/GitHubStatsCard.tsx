@@ -15,13 +15,15 @@ export const GitHubStatsCard = ({
   prs,
   issues,
   grade,
-}: GitHubStatsProps) => {
+  width = 490,
+  height = 200,
+}: GitHubStatsProps & { width?: number; height?: number }) => {
   return (
     <div
       style={{
         display: "flex",
-        width: "490px",
-        height: "200px",
+        width: `${width}px`,
+        height: `${height}px`,
         backgroundColor: THEME.cardBg,
         borderRadius: "24px",
         padding: "30px",

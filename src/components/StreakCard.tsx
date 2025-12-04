@@ -7,13 +7,19 @@ interface StreakCardProps {
   longest: number;
 }
 
-export const StreakCard = ({ total, current, longest }: StreakCardProps) => {
+export const StreakCard = ({
+  total,
+  current,
+  longest,
+  width = 490,
+  height = 200,
+}: StreakCardProps & { width?: number; height?: number }) => {
   return (
     <div
       style={{
         display: "flex",
-        width: "490px",
-        height: "200px",
+        width: `${width}px`,
+        height: `${height}px`,
         backgroundColor: THEME.cardBg,
         borderRadius: "24px",
         alignItems: "center",

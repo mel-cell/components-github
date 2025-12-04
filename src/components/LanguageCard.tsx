@@ -27,7 +27,15 @@ const createDonutPath = (
   return `M ${cx} ${cy} L ${start.x} ${start.y} A ${r} ${r} 0 ${largeArcFlag} 0 ${end.x} ${end.y} Z`;
 };
 
-export const LanguageCard = ({ languages }: { languages: any[] }) => {
+export const LanguageCard = ({
+  languages,
+  width = 320,
+  height = 480,
+}: {
+  languages: any[];
+  width?: number;
+  height?: number;
+}) => {
   let startAngle = 0;
   const donutPaths = languages.map((lang: any) => {
     const angle = (lang.percent / 100) * 360;
@@ -51,8 +59,8 @@ export const LanguageCard = ({ languages }: { languages: any[] }) => {
       style={{
         display: "flex",
         flexDirection: "column",
-        width: "320px",
-        height: "480px",
+        width: `${width}px`,
+        height: `${height}px`,
         backgroundColor: THEME.cardBg,
         borderRadius: "24px",
         padding: "25px",

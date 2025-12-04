@@ -30,16 +30,5 @@
 
 <div align="center">
   <h3>My Stats</h3>
-  <table>
-    <tr>
-      <td valign="top" width="50%">
-        <img src="https://components-github.vercel.app/api/card?type=streak&username=mel-cell&v=1" alt="GitHub Streak" width="100%" />
-        <br/><br/>
-        <img src="https://components-github.vercel.app/api/card?type=stats&username=mel-cell&v=1" alt="GitHub Stats" width="100%" />
-      </td>
-      <td valign="top" width="50%">
-        <img src="https://components-github.vercel.app/api/card?type=languages&username=mel-cell&v=1" alt="Top Languages" width="100%" />
-      </td>
-    </tr>
-  </table>
+  <img src="https://components-github.vercel.app/api/card?type=combined&username=mel-cell&v=1" alt="GitHub Stats Combined" width="900" />
 </div>

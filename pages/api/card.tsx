@@ -5,6 +5,7 @@ import { LanguageCard } from "../../src/components/LanguageCard";
 import { ActivityCard } from "../../src/components/ActivityCard";
 import { GitHubStatsCard } from "../../src/components/GitHubStatsCard";
 import { ProfileCard } from "../../src/components/ProfileCard";
+import { CombinedCard } from "../../src/components/CombinedCard";
 
 export const config = {
   runtime: "edge",
@@ -83,6 +84,11 @@ export default async function handler(request: Request) {
         );
         width = 490;
         height = 260;
+        break;
+      case "combined":
+        component = <CombinedCard data={data} />;
+        width = 900;
+        height = 420;
         break;
       default:
         return new Response("Invalid type parameter", { status: 400 });
