@@ -130,7 +130,8 @@ export function calculateStats(data: GithubData) {
       percent: (size / totalSize) * 100,
       color,
     }))
-    .sort((a, b) => b.percent - a.percent);
+    .sort((a, b) => b.percent - a.percent)
+    .filter((lang) => lang.percent >= 0.1); // Filter out languages < 1%
 
   // Calculate Streaks
   const days = user.contributionsCollection.contributionCalendar.weeks
