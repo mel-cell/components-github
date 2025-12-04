@@ -74,7 +74,7 @@ export default async function handler(request: Request) {
         return new Response("Invalid type parameter", { status: 400 });
     }
 
-    return new ImageResponse(
+    const response = new ImageResponse(
       (
         <div style={{ display: "flex", fontFamily: "Inter, sans-serif" }}>
           {component}
@@ -101,13 +101,16 @@ export default async function handler(request: Request) {
             style: "normal",
           },
         ],
-        headers: {
-          "Cache-Control": "no-store, max-age=0",
-          "Content-Security-Policy":
-            "default-src 'none'; img-src * data: https:; style-src 'unsafe-inline'; font-src * data: https:;",
-        },
       }
     );
+
+    response.headers.set("Cache-Control", "no-store, max-age=0");
+    response.headers.set(
+      "Content-Security-Policy",
+      "default-src 'none'; img-src * data: https:; style-src 'unsafe-inline'; font-src * data: https:;"
+    );
+
+    return response;
   } catch (e: any) {
     console.log(`${e.message}`);
     return new ImageResponse(

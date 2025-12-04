@@ -16,7 +16,7 @@ export default async function handler(request: Request) {
     const data = calculateStats(rawData);
 
     // 2. Render to SVG
-    return new ImageResponse(<BentoGrid data={data} />, {
+    const response = new ImageResponse(<BentoGrid data={data} />, {
       width: 1000,
       height: 850,
       fonts: [
@@ -37,12 +37,15 @@ export default async function handler(request: Request) {
           style: "normal",
         },
       ],
-      headers: {
-        "Cache-Control": "no-store, max-age=0",
-        "Content-Security-Policy":
-          "default-src 'none'; img-src * data: https:; style-src 'unsafe-inline'; font-src * data: https:;",
-      },
     });
+
+    response.headers.set("Cache-Control", "no-store, max-age=0");
+    response.headers.set(
+      "Content-Security-Policy",
+      "default-src 'none'; img-src * data: https:; style-src 'unsafe-inline'; font-src * data: https:;"
+    );
+
+    return response;
   } catch (e: any) {
     console.log(`${e.message}`);
     return new ImageResponse(
