@@ -4,6 +4,7 @@ import { StreakCard } from "./StreakCard";
 import { GitHubStatsCard } from "./GitHubStatsCard";
 import { LanguageCard } from "./LanguageCard";
 
+// Combined Card Component for Vercel OG
 export const CombinedCard = ({ data }: { data: any }) => {
   const { stats, languages } = data;
 
