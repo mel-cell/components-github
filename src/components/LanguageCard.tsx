@@ -32,7 +32,8 @@ export const LanguageCard = ({ languages }: { languages: any[] }) => {
   const donutPaths = languages.map((lang: any) => {
     const angle = (lang.percent / 100) * 360;
     if (angle <= 0) return null;
-    const path = createDonutPath(60, 60, 50, startAngle, startAngle + angle);
+    // Increased radius from 50 to 70
+    const path = createDonutPath(80, 80, 70, startAngle, startAngle + angle);
     startAngle += angle;
     return (
       <path
@@ -66,16 +67,17 @@ export const LanguageCard = ({ languages }: { languages: any[] }) => {
         style={{
           display: "flex",
           justifyContent: "center",
-          margin: "30px 0",
+          margin: "20px 0",
           position: "relative",
-          width: "120px",
-          height: "120px",
+          width: "160px",
+          height: "160px",
           alignSelf: "center",
         }}
       >
-        <svg width="120" height="120" viewBox="0 0 120 120">
+        <svg width="160" height="160" viewBox="0 0 160 160">
           {donutPaths}
-          <circle cx="60" cy="60" r="35" fill={THEME.cardBg} />
+          {/* Inner circle radius 55 */}
+          <circle cx="80" cy="80" r="55" fill={THEME.cardBg} />
         </svg>
         <div
           style={{
@@ -90,23 +92,24 @@ export const LanguageCard = ({ languages }: { languages: any[] }) => {
           <span
             style={{
               color: THEME.textMain,
-              fontSize: "16px",
+              fontSize: "20px",
               fontWeight: "bold",
             }}
           >
             {languages.length}
           </span>
-          <span style={{ color: THEME.textDim, fontSize: "8px" }}>LANGS</span>
+          <span style={{ color: THEME.textDim, fontSize: "10px" }}>LANGS</span>
         </div>
       </div>
 
-      {/* Legend List */}
+      {/* Legend List - Scrollable effect not possible in image, so we use compact layout */}
       <div
         style={{
           display: "flex",
           flexWrap: "wrap",
-          gap: "12px",
+          gap: "8px",
           alignContent: "flex-start",
+          justifyContent: "space-between", // Distribute space
         }}
       >
         {languages.map((lang: any) => (
@@ -115,8 +118,9 @@ export const LanguageCard = ({ languages }: { languages: any[] }) => {
             style={{
               display: "flex",
               alignItems: "center",
-              width: "125px",
-              fontSize: "12px",
+              width: "48%", // 2 columns
+              fontSize: "11px",
+              marginBottom: "4px",
             }}
           >
             <div
@@ -125,7 +129,8 @@ export const LanguageCard = ({ languages }: { languages: any[] }) => {
                 height: "8px",
                 borderRadius: "50%",
                 backgroundColor: lang.color,
-                marginRight: "8px",
+                marginRight: "6px",
+                flexShrink: 0,
               }}
             />
             <span
@@ -139,7 +144,7 @@ export const LanguageCard = ({ languages }: { languages: any[] }) => {
             >
               {lang.name}
             </span>
-            <span style={{ color: THEME.textMain }}>
+            <span style={{ color: THEME.textMain, marginLeft: "4px" }}>
               {Math.round(lang.percent)}%
             </span>
           </div>

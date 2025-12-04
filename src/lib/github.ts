@@ -130,8 +130,7 @@ export function calculateStats(data: GithubData) {
       percent: (size / totalSize) * 100,
       color,
     }))
-    .sort((a, b) => b.percent - a.percent)
-    .slice(0, 6); // Top 6 for cleaner UI
+    .sort((a, b) => b.percent - a.percent);
 
   // Calculate Streaks
   const days = user.contributionsCollection.contributionCalendar.weeks
