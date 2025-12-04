@@ -35,7 +35,13 @@ export const LanguageCard = ({ languages }: { languages: any[] }) => {
     const path = createDonutPath(60, 60, 50, startAngle, startAngle + angle);
     startAngle += angle;
     return (
-      <path d={path} fill={lang.color} stroke={THEME.cardBg} strokeWidth="2" />
+      <path
+        key={lang.name}
+        d={path}
+        fill={lang.color}
+        stroke={THEME.cardBg}
+        strokeWidth="2"
+      />
     );
   });
 
@@ -57,31 +63,41 @@ export const LanguageCard = ({ languages }: { languages: any[] }) => {
 
       {/* Donut */}
       <div
-        style={{ display: "flex", justifyContent: "center", margin: "30px 0" }}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          margin: "30px 0",
+          position: "relative",
+          width: "120px",
+          height: "120px",
+          alignSelf: "center",
+        }}
       >
         <svg width="120" height="120" viewBox="0 0 120 120">
           {donutPaths}
           <circle cx="60" cy="60" r="35" fill={THEME.cardBg} />
-          <text
-            x="60"
-            y="65"
-            textAnchor="middle"
-            fill={THEME.textMain}
-            fontSize="16"
-            fontWeight="bold"
+        </svg>
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <span
+            style={{
+              color: THEME.textMain,
+              fontSize: "16px",
+              fontWeight: "bold",
+            }}
           >
             {languages.length}
-          </text>
-          <text
-            x="60"
-            y="80"
-            textAnchor="middle"
-            fill={THEME.textDim}
-            fontSize="8"
-          >
-            LANGS
-          </text>
-        </svg>
+          </span>
+          <span style={{ color: THEME.textDim, fontSize: "8px" }}>LANGS</span>
+        </div>
       </div>
 
       {/* Legend List */}
@@ -95,6 +111,7 @@ export const LanguageCard = ({ languages }: { languages: any[] }) => {
       >
         {languages.map((lang: any) => (
           <div
+            key={lang.name}
             style={{
               display: "flex",
               alignItems: "center",

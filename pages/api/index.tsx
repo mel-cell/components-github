@@ -15,6 +15,20 @@ export default async function handler(request: Request) {
     const rawData = await getGithubData(username);
     const data = calculateStats(rawData);
 
+    // Fetch and embed avatar image to avoid CSP issues
+    if (data.user.avatar) {
+      try {
+        const avatarRes = await fetch(data.user.avatar);
+        if (avatarRes.ok) {
+          const avatarBuffer = await avatarRes.arrayBuffer();
+          const base64Avatar = Buffer.from(avatarBuffer).toString("base64");
+          data.user.avatar = `data:image/png;base64,${base64Avatar}`;
+        }
+      } catch (e) {
+        console.error("Failed to fetch avatar:", e);
+      }
+    }
+
     // 2. Render to SVG
     const response = new ImageResponse(<BentoGrid data={data} />, {
       width: 1000,

@@ -54,34 +54,56 @@ export const BentoGrid = ({ data }: { data: any }) => {
       </div>
 
       {/* 2. Stars */}
-      <div style={{ position: "absolute", top: 0, left: "340px" }}>
+      <div
+        style={{ position: "absolute", top: 0, left: "340px", display: "flex" }}
+      >
         <StatsCard label="Total Stars" value={stats.stars} />
       </div>
 
       {/* 3. Contribs */}
-      <div style={{ position: "absolute", top: 0, left: "510px" }}>
+      <div
+        style={{ position: "absolute", top: 0, left: "510px", display: "flex" }}
+      >
         <StatsCard label="Contribs (Year)" value={stats.contribs} icon="⚡" />
       </div>
 
       {/* 4. Activity Pulse */}
-      <div style={{ position: "absolute", top: "170px", left: "340px" }}>
+      <div
+        style={{
+          position: "absolute",
+          top: "170px",
+          left: "340px",
+          display: "flex",
+        }}
+      >
         <ActivityCard history={history} />
       </div>
 
       {/* 5. Language Share */}
-      <div style={{ position: "absolute", top: 0, left: "680px" }}>
+      <div
+        style={{ position: "absolute", top: 0, left: "680px", display: "flex" }}
+      >
         <LanguageCard languages={languages} />
       </div>
 
       {/* --- ROW 2 --- */}
 
       {/* 6. Profile Info */}
-      <div style={{ position: "absolute", top: "340px", left: 0 }}>
+      <div
+        style={{ position: "absolute", top: "340px", left: 0, display: "flex" }}
+      >
         <ProfileCard name={user.name} login={user.login} bio={user.bio} />
       </div>
 
       {/* 7. Followers */}
-      <div style={{ position: "absolute", top: "340px", left: "510px" }}>
+      <div
+        style={{
+          position: "absolute",
+          top: "340px",
+          left: "510px",
+          display: "flex",
+        }}
+      >
         <StatsCard
           label="Followers"
           value={stats.followers}
@@ -91,14 +113,23 @@ export const BentoGrid = ({ data }: { data: any }) => {
       </div>
 
       {/* 8. Clock */}
-      <div style={{ position: "absolute", top: "500px", left: "680px" }}>
+      <div
+        style={{
+          position: "absolute",
+          top: "500px",
+          left: "680px",
+          display: "flex",
+        }}
+      >
         <ClockCard />
       </div>
 
       {/* --- ROW 3 --- */}
 
       {/* 9. GitHub Stats */}
-      <div style={{ position: "absolute", top: "620px", left: 0 }}>
+      <div
+        style={{ position: "absolute", top: "620px", left: 0, display: "flex" }}
+      >
         <GitHubStatsCard
           stars={stats.stars}
           commits={stats.commits}
@@ -109,7 +140,14 @@ export const BentoGrid = ({ data }: { data: any }) => {
       </div>
 
       {/* 10. Streak Stats */}
-      <div style={{ position: "absolute", top: "620px", left: "510px" }}>
+      <div
+        style={{
+          position: "absolute",
+          top: "620px",
+          left: "510px",
+          display: "flex",
+        }}
+      >
         <StreakCard
           total={stats.contribs}
           current={stats.currentStreak}
