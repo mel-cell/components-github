@@ -39,13 +39,19 @@ export interface GithubData {
 }
 
 export async function getGithubData(username: string): Promise<GithubData> {
-  if (!GITHUB_TOKEN) {
+  const token = process.env.GITHUB_TOKEN;
+  console.log(
+    "Using Token:",
+    token ? `Yes (Starts with ${token.substring(0, 4)}...)` : "No",
+  );
+
+  if (!token) {
     throw new Error("GITHUB_TOKEN is missing");
   }
 
   const endpoint = "https://api.github.com/graphql";
   const client = new GraphQLClient(endpoint, {
-    headers: { authorization: `Bearer ${GITHUB_TOKEN}` },
+    headers: { authorization: `Bearer ${token}` },
   });
 
   const query = gql`
@@ -122,7 +128,7 @@ export function calculateStats(data: GithubData) {
 
   const totalSize = Array.from(langMap.values()).reduce(
     (acc, val) => acc + val.size,
-    0
+    0,
   );
   const languages = Array.from(langMap.entries())
     .map(([name, { size, color }]) => ({

@@ -44,7 +44,13 @@ const getLayout = (x: number, y: number, w: number, h: number) => {
   };
 };
 
-export const BentoGrid = ({ data }: { data: any }) => {
+export const BentoGrid = ({
+  data,
+  customImage,
+}: {
+  data: any;
+  customImage?: string;
+}) => {
   const { stats, user, languages, history } = data;
 
   // Layout Configuration
@@ -88,7 +94,7 @@ export const BentoGrid = ({ data }: { data: any }) => {
           }}
         >
           <img
-            src={user.avatar}
+            src={customImage || user.avatar}
             width="100%"
             height="100%"
             style={{ objectFit: "cover" }}

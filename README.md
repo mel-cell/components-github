@@ -9,7 +9,7 @@ A collection of dynamic, customizable GitHub profile components generated on the
 The ultimate profile summary. Displays your avatar, bio, contribution streaks, top languages, activity graph, and GitHub statistics in a beautiful, responsive bento-style grid.
 
 <div align="center">
-  <img src="https://components-github.vercel.app/api?username=mel-cell&v=1" alt="Bento Grid Preview" width="900" />
+  <img src="https://components-github.vercel.app/api?username=mel-cell&v=2" alt="Bento Grid Preview" width="900" />
 </div>
 
 ### 👨‍💻 Usage
@@ -29,7 +29,7 @@ Copy and paste this into your `README.md`:
 A sleek, full-width card that combines your **Contribution Streak**, **GitHub Stats**, and **Top Languages** into a single, gap-less layout. Perfect for a clean and informative footer.
 
 <div align="center">
-  <img src="https://components-github.vercel.app/api/card?type=combined&username=mel-cell&v=1" alt="Combined Card Preview" width="900" />
+  <img src="https://components-github.vercel.app/api/card?type=combined&username=mel-cell&v=2" alt="Combined Card Preview" width="900" />
 </div>
 
 ### 👨‍💻 Usage
@@ -51,7 +51,7 @@ Prefer a custom layout? Use these individual cards to build your own design.
 Displays your current and longest contribution streaks.
 
 <div align="center">
-  <img src="https://components-github.vercel.app/api/card?type=streak&username=mel-cell&v=1" alt="Streak Card" height="200" />
+  <img src="https://components-github.vercel.app/api/card?type=streak&username=mel-cell&v=2" alt="Streak Card" height="200" />
 </div>
 
 ```markdown
@@ -63,7 +63,7 @@ Displays your current and longest contribution streaks.
 Shows your total stars, commits, PRs, issues, and a calculated grade.
 
 <div align="center">
-  <img src="https://components-github.vercel.app/api/card?type=stats&username=mel-cell&v=1" alt="Stats Card" height="200" />
+  <img src="https://components-github.vercel.app/api/card?type=stats&username=mel-cell&v=2" alt="Stats Card" height="200" />
 </div>
 
 ```markdown
@@ -75,7 +75,7 @@ Shows your total stars, commits, PRs, issues, and a calculated grade.
 Displays your most used languages in a donut chart.
 
 <div align="center">
-  <img src="https://components-github.vercel.app/api/card?type=languages&username=mel-cell&v=1" alt="Languages Card" height="480" />
+  <img src="https://components-github.vercel.app/api/card?type=languages&username=mel-cell&v=2" alt="Languages Card" height="480" />
 </div>
 
 ```markdown
@@ -87,7 +87,7 @@ Displays your most used languages in a donut chart.
 A sparkline graph showing your contribution activity over the last 50 days.
 
 <div align="center">
-  <img src="https://components-github.vercel.app/api/card?type=activity&username=mel-cell&v=1" alt="Activity Card" height="150" />
+  <img src="https://components-github.vercel.app/api/card?type=activity&username=mel-cell&v=2" alt="Activity Card" height="150" />
 </div>
 
 ```markdown
@@ -99,7 +99,7 @@ A sparkline graph showing your contribution activity over the last 50 days.
 A simple card displaying your avatar, name, and bio.
 
 <div align="center">
-  <img src="https://components-github.vercel.app/api/card?type=profile&username=mel-cell&v=1" alt="Profile Card" height="260" />
+  <img src="https://components-github.vercel.app/api/card?type=profile&username=mel-cell&v=2" alt="Profile Card" height="260" />
 </div>
 
 ```markdown
